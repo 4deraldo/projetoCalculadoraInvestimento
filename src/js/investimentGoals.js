@@ -1,59 +1,55 @@
-function convertToMounthflyRetornRate(yearReturnRate) {
+function convertToMonthlyReturnRate(yearReturnRate) {
   return yearReturnRate ** (1 / 12);
 }
 
-function generateReturnArra(
+function generateReturnArray(
   startingAmount = 0,
   timeHorizon = 0,
-  timePeriod = 'monthfly',
-  monthflyContribution = 0,
+  timePeriod = 'monthly',
+  monthlyContribution = 0,
   returnRate = 0,
-  returnTimeFrame = 'monthfly ',
+  returnTimeFrame = 'monthly',
 ) {
   if (!timeHorizon || !startingAmount) {
     throw new Error(
       'Investimento Inicial e prazo devem ser preenchidos com valores positivos',
     );
   }
+
   const finalReturnRate =
-    returnTimeFrame === 'monthfly'
+    returnTimeFrame === 'monthly'
       ? 1 + returnRate / 100
-      : convertToMounthflyRetornRate(1 + returnRate / 100);
+      : convertToMonthlyReturnRate(1 + returnRate / 100);
 
   const finalTimeHorizon =
-    timeHorizon === 'monthfly' ? timeHorizon : timeHorizon * 12;
+    timePeriod === 'monthly' ? timeHorizon : timeHorizon * 12;
 
-  const referenceInvestimentObject = {
+  const reference = {
     investedAmount: startingAmount,
     interestReturn: 0,
-    totalIntererstReturn: 0,
-    mounth: 0,
+    totalInterestReturn: 0,
+    month: 0,
     totalAmount: startingAmount,
   };
-  const returnArray = [referenceInvestimentObject];
 
-  for (
-    let timeReference = 1;
-    timeReference <= finalTimeHorizon;
-    timeReference++
-  ) {
-    const totalAmount =
-      returnArray[timeReference - 1].totalAmount * finalReturnRate +
-      monthflyContribution;
+  const returnArray = [reference];
 
-    const interestReturn =
-      returnArray[timeReference - 1].totalAmount * finalReturnRate;
+  for (let i = 1; i <= finalTimeHorizon; i++) {
+    const previousTotal = returnArray[i - 1].totalAmount;
 
-    const investedAmount =
-      startingAmount + monthflyContribution * timeReference;
+    const interest = previousTotal * (finalReturnRate - 1);
 
-    const totalIntererstReturn = totalAmount - investedAmount;
+    const totalAmount = previousTotal + interest + monthlyContribution;
+
+    const investedAmount = startingAmount + monthlyContribution * i;
+
+    const totalInterestReturn = totalAmount - investedAmount;
 
     returnArray.push({
       investedAmount,
-      interestReturn,
-      totalIntererstReturn,
-      mounth: timeReference,
+      interestReturn: interest,
+      totalInterestReturn,
+      month: i,
       totalAmount,
     });
   }
