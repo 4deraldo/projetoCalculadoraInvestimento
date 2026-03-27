@@ -11,55 +11,60 @@
     <h1 class="text-2xl font-bold px-6">Calculadora de Investimento</h1>
 
     <form id='investmentForm' class="w-full">
-      <div class="flex w-full flex-col px-6 my-2">
+      <div class="flex w-full flex-col px-6 my-2 
+      h-17">
         <label for="initialInvestment" class="font-bold">Investimento Inicial</label>
         <div class="flex">
           <input value="R$" type="text" class="w-1/6 bg-white rounded-l-lg text-center font-bold" disabled>
-          <input type="text" id="initialInvestment" placeholder="0.00" required
+          <input type="text" id="initialInvestment" placeholder="0.00" required name="initialInvestment"
             class="grow border px-2 py-1 text-white bg-gray-700 rounded-r-lg">
         </div>
+
       </div>
 
 
-      <div class="flex w-full flex-col px-6 my-2">
+      <div class="flex w-full flex-col px-6 my-2 
+      h-17">
         <label for="additionalContributions" class="font-bold">Aporte Adicionais</label>
         <div class="flex">
           <input value="R$" type="text" class="w-1/6 bg-white rounded-l-lg text-center font-bold" />
-          <input type="text" id="additionalContributions" placeholder="0.00"
+          <input type="text" id="additionalContributions" placeholder="0.00" name="additionalContributions"
             class="grow border px-2 py-1 text-white bg-gray-700 rounded-r-lg">
         </div>
       </div>
 
-      <div class="flex w-full flex-col px-6 my-2">
+      <div class="flex w-full flex-col px-6 my-2 h-17">
         <label for="investmentTime" class="font-bold">Prazo</label>
         <div class="flex">
-          <input type="text" id="investmentTime" placeholder="0" required
+          <input type="text" id="investmentTime" placeholder="0" required name="investmentTime"
             class=" w-4/6 border px-2 py-1 text-white bg-gray-700 rounded-l-lg" />
-          <select id="investmentTimePeriod" class=" grow bg-white rounded-r-lg font-bold text-center hover:bg-gray-400">
-            <option value=" monthly">Mensal</option>
-            <option value="yearly">Anual</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="flex w-full flex-col px-6 my-2">
-        <label for="returnRate" class="font-bold">Rentabilidade</label>
-        <div class="flex">
-          <input value="%" class="w-1/6 bg-white rounded-l-lg text-center font-bold" />
-          <input type="text" id="returnRate" placeholder="0" required
-            class="w-1/2 border px-2 py-1 text-white bg-gray-700" />
-          <select id="evaluationPeriod" class="w-1/3 bg-white rounded-r-lg font-bold text-cente hover:bg-gray-400">
+          <select id="investmentTimePeriod" name="investmentTimePeriod"
+            class=" grow bg-white rounded-r-lg font-bold text-center hover:bg-gray-400">
             <option value="monthly">Mensal</option>
             <option value="yearly">Anual</option>
           </select>
         </div>
       </div>
 
-      <div class="flex w-full flex-col px-6 my-2">
-        <label for="IncomeTax" class="font-bold">Impostos sobre lucro</label>
+      <div class="flex w-full flex-col px-6 my-2 h-17">
+        <label for="returnRate" class="font-bold">Rentabilidade</label>
+        <div class="flex">
+          <input value="%" class="w-1/6 bg-white rounded-l-lg text-center font-bold" />
+          <input type="text" id="returnRate" placeholder="0" required name="returnRate"
+            class="w-1/2 border px-2 py-1 text-white bg-gray-700 " />
+          <select id="evaluationPeriod" name="evaluationPeriod"
+            class="w-1/3 bg-white rounded-r-lg font-bold text-cente hover:bg-gray-400">
+            <option value="monthly">Mensal</option>
+            <option value="yearly">Anual</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex w-full flex-col px-6 my-2 h-17">
+        <label for="taxRate" class="font-bold">Impostos sobre lucro</label>
         <div class="flex">
           <input value="%" type="text" class="w-1/6 bg-white rounded-l-lg text-center font-bold" disabled>
-          <input type="text" placeholder="0" id="taxRate" required
+          <input type="text" placeholder="0" id="taxRate" required name="taxRate"
             class="grow border px-2 py-1 text-white bg-gray-700 rounded-r-lg">
         </div>
       </div>
@@ -69,7 +74,7 @@
     <div class="flex h-12 px-6 my-8 w-full gap-2">
       <button id="calculateResoults" form="investmentForm" type="submit"
         class="w-1/2 rounded-lg bg-emerald-950 text-slate-200 font-bold  hover:bg-emerald-800">Calcular</button>
-      <button class="w-1/2 rounded-lg  font-bold hover:bg-gray-500">Limpar</button>
+      <button id="btnClearForm" class="w-1/2 rounded-lg  font-bold hover:bg-gray-500">Limpar</button>
     </div>
   </aside>
   <main>
